@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>South India — Incredible India</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;1,400&family=Tiro+Devanagari+Sanskrit&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--ac:#2E9E7E;--dark:#050F0A;--char:#0D1F16;--cream:#E8F5EE;--muted:#5A7A68;--border:rgba(46,158,126,0.25)}
+html{scroll-behavior:smooth}
+body{font-family:'Crimson Pro',serif;background:var(--dark);color:var(--cream);overflow-x:hidden}
+a{text-decoration:none;color:inherit}img{display:block;max-width:100%}
+.navbar{position:fixed;top:0;left:0;right:0;z-index:999;background:rgba(5,15,10,0.97);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1440px;margin:0 auto;padding:0 4%;height:66px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.nav-dot{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--ac),#1a7a5e);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.nav-brand{font-family:'Cinzel',serif;font-size:clamp(.72rem,1.4vw,.9rem);letter-spacing:2px;color:var(--cream);white-space:nowrap}
+.nav-links{display:flex;list-style:none;align-items:center;gap:0}
+.nav-links li a{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:2px;color:rgba(232,245,238,.65);text-transform:uppercase;padding:8px 12px;white-space:nowrap;transition:color .3s;display:block}
+.nav-links li a:hover,.nav-links li a.active{color:var(--ac)}
+.nav-links .nav-cta a{background:var(--ac);color:#fff !important;padding:8px 16px}
+.hamburger{display:none;background:none;border:1px solid var(--border);color:var(--cream);padding:7px 11px;font-size:1.1rem;cursor:pointer;flex-shrink:0}
+.mob-menu{display:none;flex-direction:column;background:rgba(5,15,10,0.98);border-top:1px solid var(--border);padding:14px 4%}
+.mob-menu.open{display:flex}
+.mob-menu a{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:3px;color:rgba(232,245,238,.72);text-transform:uppercase;padding:12px 0;border-bottom:1px solid rgba(46,158,126,.1);transition:color .3s}
+.mob-menu a:hover{color:var(--ac)}
+@media(max-width:860px){.nav-links{display:none}.hamburger{display:flex}}
+
+.hero{height:100vh;min-height:560px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:0 8% 8%}
+.hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;animation:zoom 14s ease infinite alternate}
+@keyframes zoom{from{transform:scale(1)}to{transform:scale(1.07)}}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,15,10,.9) 0%,rgba(5,15,10,.2) 55%,rgba(5,15,10,.45) 100%)}
+.hc{position:relative;z-index:2;max-width:740px}
+.h-mantra{font-family:'Tiro Devanagari Sanskrit',serif;font-size:1.2rem;color:var(--ac);letter-spacing:3px;margin-bottom:14px;opacity:0;animation:fu 1s ease .2s forwards}
+.h-tag{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:6px;color:#4ecba0;text-transform:uppercase;margin-bottom:14px;opacity:0;animation:fu 1s ease .5s forwards}
+.h-title{font-family:'Cormorant Garamond',serif;font-size:clamp(3.2rem,8vw,7.5rem);font-weight:300;line-height:.95;margin-bottom:20px;opacity:0;animation:fu 1s ease .8s forwards}
+.h-title em{font-style:italic;color:var(--ac)}
+.h-desc{font-size:1.18rem;color:rgba(232,245,238,.72);line-height:1.85;margin-bottom:34px;max-width:560px;opacity:0;animation:fu 1s ease 1.1s forwards}
+.btn{display:inline-block;background:var(--ac);color:#fff;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:3px;padding:14px 32px;text-transform:uppercase;transition:background .3s;opacity:0;animation:fu 1s ease 1.4s forwards}
+@keyframes fu{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+
+.mantra-band{background:var(--char);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:20px 5%;text-align:center}
+.mb-skt{font-family:'Tiro Devanagari Sanskrit',serif;font-size:1.3rem;color:var(--ac);letter-spacing:4px;animation:sh 3s ease infinite alternate}
+.mb-eng{font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:4px;color:var(--muted);text-transform:uppercase;margin-top:6px}
+@keyframes sh{from{opacity:.6}to{opacity:1}}
+
+.wrap{padding:86px 8%}
+.ey{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:5px;color:var(--ac);text-transform:uppercase;margin-bottom:14px}
+.st{font-family:'Cormorant Garamond',serif;font-size:clamp(2.3rem,4vw,3.8rem);font-weight:300;line-height:1.1}
+.st em{font-style:italic;color:var(--ac)}
+.sub{font-size:1.08rem;color:rgba(232,245,238,.62);line-height:1.85;max-width:580px;margin-top:14px}
+
+.ov-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.ov-imgs{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.ov-img{width:100%;height:205px;object-fit:cover;transition:transform .4s}
+.ov-img:hover{transform:scale(1.04)}
+.ov-img.tall{grid-row:span 2;height:calc(205px*2 + 6px)}
+.ov-text p{font-size:1.05rem;color:rgba(232,245,238,.68);line-height:1.9;margin-top:14px}
+
+.place-block{display:grid;grid-template-columns:1fr 1fr;margin-bottom:4px;overflow:hidden;min-height:560px}
+.place-block.rev{direction:rtl}
+.place-block.rev>*{direction:ltr}
+.pb-gal{position:relative;overflow:hidden}
+.pb-main{width:100%;height:100%;min-height:460px;object-fit:cover;display:block;transition:transform .7s}
+.pb-gal:hover .pb-main{transform:scale(1.05)}
+.pb-thumbs{position:absolute;bottom:12px;right:12px;display:flex;flex-direction:column;gap:6px;z-index:2}
+.pb-th{width:62px;height:48px;object-fit:cover;cursor:pointer;border:2px solid transparent;opacity:.55;transition:all .3s}
+.pb-th.on,.pb-th:hover{opacity:1;border-color:var(--ac)}
+.pb-info{background:var(--char);padding:56px 48px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.pb-info::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(to bottom,transparent,var(--ac),transparent)}
+.pb-num{font-family:'Cormorant Garamond',serif;font-size:9rem;font-weight:300;color:rgba(46,158,126,.06);position:absolute;bottom:-10px;right:16px;line-height:1;pointer-events:none}
+.pb-st{font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:4px;color:var(--ac);text-transform:uppercase;margin-bottom:10px}
+.pb-name{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:300;line-height:1.1;margin-bottom:16px}
+.pb-desc{font-size:1rem;color:rgba(232,245,238,.65);line-height:1.9;margin-bottom:20px}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.pill{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:2px;color:var(--ac);border:1px solid rgba(46,158,126,.28);padding:6px 12px;text-transform:uppercase}
+.irows{display:flex;flex-direction:column;gap:9px}
+.irow{display:flex;gap:12px;padding:11px;border:1px solid var(--border);align-items:flex-start}
+.ir-i{font-size:1.2rem;flex-shrink:0;margin-top:2px}
+.ir-l{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:3px;color:var(--ac);text-transform:uppercase;margin-bottom:3px}
+.ir-v{font-size:.9rem;color:rgba(232,245,238,.65);line-height:1.5}
+
+.hl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:2px;margin-top:50px}
+.hl-card{position:relative;overflow:hidden;aspect-ratio:3/4}
+.hl-img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.hl-card:hover .hl-img{transform:scale(1.07)}
+.hl-info{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,15,10,.88) 0%,transparent 52%);display:flex;flex-direction:column;justify-content:flex-end;padding:22px 18px}
+.hl-cat{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:3px;color:var(--ac);text-transform:uppercase;margin-bottom:5px}
+.hl-name{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;color:var(--cream);margin-bottom:5px}
+.hl-desc{font-size:.84rem;color:rgba(232,245,238,.6);line-height:1.5}
+
+.fg{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:2px;margin-top:50px}
+.fg-item{position:relative;overflow:hidden;aspect-ratio:4/5}
+.fg-img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.fg-item:hover .fg-img{transform:scale(1.07)}
+.fg-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,transparent 52%);display:flex;flex-direction:column;justify-content:flex-end;padding:18px 15px}
+.fg-reg{font-family:'Cinzel',serif;font-size:.49rem;letter-spacing:3px;color:var(--ac);text-transform:uppercase;margin-bottom:4px}
+.fg-name{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;color:#fff;margin-bottom:3px}
+.fg-note{font-size:.8rem;color:rgba(255,255,255,.55)}
+
+.quote-blk{padding:70px 8%;text-align:center;background:var(--char);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.q-skt{font-family:'Tiro Devanagari Sanskrit',serif;font-size:2rem;color:var(--ac);letter-spacing:4px;animation:sh 3s ease infinite alternate}
+.q-eng{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:300;font-style:italic;color:var(--cream);max-width:640px;margin:14px auto 0;line-height:1.5}
+.q-src{font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:4px;color:var(--muted);text-transform:uppercase;margin-top:12px}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-l{opacity:0;transform:translateX(-28px);transition:opacity .75s ease,transform .75s ease}
+.reveal-l.visible{opacity:1;transform:translateX(0)}
+.reveal-r{opacity:0;transform:translateX(28px);transition:opacity .75s ease,transform .75s ease}
+.reveal-r.visible{opacity:1;transform:translateX(0)}
+
+.regnav{padding:26px 8%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;border-top:1px solid var(--border);background:var(--char)}
+.rn-b{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:3px;color:var(--muted);text-transform:uppercase;transition:color .3s}
+.rn-b:hover{color:var(--ac)}
+.rn-n{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:3px;color:var(--ac);text-transform:uppercase;transition:letter-spacing .3s}
+.rn-n:hover{letter-spacing:4px}
+footer{background:var(--dark);border-top:1px solid var(--border);padding:32px 8%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+footer p{font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:3px;color:var(--muted);text-transform:uppercase}
+
+@media(max-width:900px){
+  .ov-grid{grid-template-columns:1fr}
+  .place-block,.place-block.rev{grid-template-columns:1fr;direction:ltr}
+  .place-block.rev>*{direction:ltr}
+  .pb-main{min-height:300px}
+  .pb-info{padding:36px 26px}
+  .pb-thumbs{flex-direction:row;bottom:8px;right:8px}
+  .pb-th{width:50px;height:38px}
+}
+@media(max-width:600px){
+  .wrap{padding:56px 5%}
+  .ov-imgs{grid-template-columns:1fr}
+  .ov-img.tall{height:220px;grid-row:auto}
+  .fg{grid-template-columns:1fr 1fr}
+  footer{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-dot">🪔</div>
+      <span class="nav-brand">INCREDIBLE INDIA</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="north.html">North</a></li>
+      <li><a href="south.html" class="active">South</a></li>
+      <li><a href="east.html">East</a></li>
+      <li><a href="west.html">West</a></li>
+      <li class="cta-li"><a href="contact.html">Plan Trip</a></li>
+    </ul>
+    <button class="hamburger" id="hbtn" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
+<div class="mob-drawer" id="drawer">
+  <a href="index.html" onclick="toggleMenu()">🏠 Home</a>
+  <a href="north.html" onclick="toggleMenu()">🏔️ North India</a>
+  <a href="south.html" onclick="toggleMenu()">🌴 South India</a>
+  <a href="east.html" onclick="toggleMenu()">🍵 East India</a>
+  <a href="west.html" onclick="toggleMenu()">🏜️ West India</a>
+  <a href="contact.html" onclick="toggleMenu()">✈️ Plan Your Trip</a>
+</div>
+
+<!-- KERALA -->
+  <!--
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  KERALA IMAGES (click thumbnails to swap)
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  MAIN — Kerala backwaters houseboat
+  images/kerala.jpg
+  SAVE AS: images/kerala-1.jpg
+
+  THUMB 2 — Munnar tea gardens misty hills
+  images/kerala-md.jpg
+  SAVE AS: images/kerala-2.jpg
+  (if not loading, use any green hill image)
+
+  THUMB 3 — Kovalam Beach Kerala
+  images/goa.jpg
+  SAVE AS: images/kerala-3.jpg
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  -->
+  <div class="place-block reveal" id="kerala">
+    <div class="pb-gal">
+      <img class="pb-main" id="kerM" src="images/kerala.jpg" alt="Kerala Backwaters"/>
+      <div class="pb-thumbs">
+        <img class="pb-th on" src="images/kerala-sm.jpg" onclick="sw('kerM',this,'images/kerala.jpg')" alt="Backwaters"/>
+        <img class="pb-th" src="images/saffron-sm.jpg" onclick="sw('kerM',this,'images/saffron.jpg')" alt="Spices"/>
+        <img class="pb-th" src="images/goa-sm.jpg" onclick="sw('kerM',this,'images/goa.jpg')" alt="Beach"/>
+      </div>
+    </div>
+    <div class="pb-info">
+      <span class="pb-num">01</span>
+      <p class="pb-st">Kerala · God's Own Country · UNESCO Biosphere Reserve</p>
+      <h3 class="pb-name">Kerala Backwaters</h3>
+      <p class="pb-desc">A 900km network of lagoons, lakes, and canals lined with swaying coconut palms — Kerala's backwaters are unlike anything on Earth. Float through on a traditional kettuvallam (houseboat), watch kingfishers dart over still water, and let time stop. Munnar's tea gardens glow emerald at dawn. Periyar's wildlife sanctuary hides elephants, tigers, and rare birds. Wayanad's jungle waterfalls thunder through ancient forests. Ayurveda massages have been practiced here for 5,000 years. Kathakali performers paint their faces for 3 hours before a single word is spoken.</p>
+      <div class="pills">
+        <span class="pill">🛶 Houseboat Cruise</span><span class="pill">🌿 Munnar Tea Gardens</span><span class="pill">🐘 Periyar Wildlife</span><span class="pill">💆 Ayurveda Spa</span><span class="pill">🎭 Kathakali Dance</span><span class="pill">🏖️ Kovalam Beach</span>
+      </div>
+      <div class="irows">
+        <div class="irow"><span class="ir-i">☀️</span><div><p class="ir-l">Best Time</p><p class="ir-v">September–March (dry). Monsoon (June–Aug) is magical for ayurveda and greenery</p></div></div>
+        <div class="irow"><span class="ir-i">✈️</span><div><p class="ir-l">Getting There</p><p class="ir-v">Cochin International Airport (Kochi) — well connected to all major Indian and international cities</p></div></div>
+        <div class="irow"><span class="ir-i">🏠</span><div><p class="ir-l">Stay</p><p class="ir-v">Book a kettuvallam houseboat for overnight on Alleppey backwaters — an absolutely unique experience</p></div></div>
+        <div class="irow"><span class="ir-i">🍽️</span><div><p class="ir-l">Must Eat</p><p class="ir-v">Kerala Sadhya on banana leaf · Fish Curry · Appam with stew · Puttu and Kadala · Payasam</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HAMPI -->
+  <!--
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  HAMPI IMAGES
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  MAIN — Virupaksha Temple towering gopuram
+  images/hampi.jpg
+  SAVE AS: images/hampi-1.jpg
+
+  THUMB 2 — Giant boulder landscape Hampi
+  (same image, different angle — just reuse or find another)
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  -->
+  <div class="place-block rev reveal" id="hampi">
+    <div class="pb-gal">
+      <img class="pb-main" id="hamM" src="images/hampi.jpg" alt="Hampi Temple"/>
+      <div class="pb-thumbs">
+        <img class="pb-th on" src="images/hampi-sm.jpg" onclick="sw('hamM',this,'images/hampi.jpg')" alt="Hampi"/>
+      </div>
+    </div>
+    <div class="pb-info">
+      <span class="pb-num">02</span>
+      <p class="pb-st">Hampi · Karnataka · UNESCO World Heritage Site</p>
+      <h3 class="pb-name">Hampi</h3>
+      <p class="pb-desc">Once the wealthiest city in the world — the Vijayanagara Empire's capital, with a GDP larger than Portugal in the 16th century — Hampi is now a surreal landscape of giant boulders and 1,600 ancient ruins scattered across 26 square kilometres. The Virupaksha Temple has been in continuous worship for over 1,300 years and still holds daily rituals. Cycling among ruins at sunset, with the Tungabhadra River gleaming below and carved stone chariots frozen mid-procession, is an experience that changes your sense of time. Hampi was designated a UNESCO World Heritage Site in 1986.</p>
+      <div class="pills">
+        <span class="pill">⛩️ Virupaksha Temple</span><span class="pill">🚴 Cycling Ruins at Sunset</span><span class="pill">🏛️ UNESCO Heritage</span><span class="pill">🛕 Stone Chariot</span><span class="pill">🌅 Boulder Sunsets</span>
+      </div>
+      <div class="irows">
+        <div class="irow"><span class="ir-i">🌤️</span><div><p class="ir-l">Best Time</p><p class="ir-v">October–February. Summer (March–May) is extremely hot. Monsoon is green but slippery on boulders.</p></div></div>
+        <div class="irow"><span class="ir-i">✈️</span><div><p class="ir-l">Getting There</p><p class="ir-v">Nearest airport: Hubli (74km) · Train to Hospet Junction (13km from Hampi)</p></div></div>
+        <div class="irow"><span class="ir-i">🚴</span><div><p class="ir-l">How to Explore</p><p class="ir-v">Rent a bicycle (₹50–100/day) — the best way to explore at your own pace. Hire a local guide for stories!</p></div></div>
+        <div class="irow"><span class="ir-i">🍽️</span><div><p class="ir-l">Must Eat</p><p class="ir-v">Rooftop cafes on the river serve Israeli food (famous backpacker spot) · Thali meals · Banana pancakes</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MEENAKSHI TEMPLE, MADURAI -->
+  <!--
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  MADURAI IMAGE — Meenakshi Amman Temple gopuram
+  DOWNLOAD: images/hampi.jpg
+  (best Meenakshi image if available — search Wikimedia Commons for "Meenakshi Temple Madurai")
+  SAVE AS: images/madurai-temple.jpg
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  -->
+  <div class="place-block reveal" id="madurai">
+    <div class="pb-gal">
+      <img class="pb-main" id="madM" src="images/hampi.jpg" alt="Meenakshi Temple"/>
+      <div class="pb-thumbs">
+        <img class="pb-th on" src="images/hampi-sm.jpg" onclick="sw('madM',this,'images/hampi.jpg')" alt="Temple"/>
+      </div>
+    </div>
+    <div class="pb-info">
+      <span class="pb-num">03</span>
+      <p class="pb-st">Madurai · Tamil Nadu · 2500-Year-Old City</p>
+      <h3 class="pb-name">Meenakshi Temple</h3>
+      <p class="pb-desc">The Meenakshi Amman Temple in Madurai is one of the greatest architectural achievements in human history. Fourteen towering gopurams (gate towers) rise above the city — the tallest reaches 51.9m. They are covered in over 33,000 hand-carved sculptures of gods, demons, and mythological creatures, each painted in vivid reds, yellows, and greens. The temple complex covers 6 hectares and includes a sacred golden lotus tank, an art museum, and its own electricity supply. The daily closing ceremony — when the goddess Meenakshi's idol is carried to Lord Shiva's chamber to the sound of drums and devotional songs — is deeply moving and open to all visitors.</p>
+      <div class="pills">
+        <span class="pill">⛩️ 14 Towering Gopurams</span><span class="pill">🎨 33,000 Sculptures</span><span class="pill">🕯️ Evening Ceremony</span><span class="pill">🏛️ 2500+ Years Old</span><span class="pill">🎭 Tamil Culture</span>
+      </div>
+      <div class="irows">
+        <div class="irow"><span class="ir-i">🎟️</span><div><p class="ir-l">Entry</p><p class="ir-v">Indians: ₹50 · Camera: ₹50 · Open 5am–12:30pm and 4pm–9:30pm · No shorts allowed</p></div></div>
+        <div class="irow"><span class="ir-i">🌙</span><div><p class="ir-l">Must Do</p><p class="ir-v">Visit at 8pm for the Alangaram closing ceremony — priests carry Shiva's idol with drums and music</p></div></div>
+        <div class="irow"><span class="ir-i">✈️</span><div><p class="ir-l">Getting There</p><p class="ir-v">Madurai Airport (10km) · Madurai Junction railway station (2km from temple)</p></div></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- CULTURAL HIGHLIGHTS -->
+<div class="wrap" style="background:var(--char)">
+  <div class="reveal">
+    <p class="ey">✦ Culture &amp; Traditions ✦</p>
+    <h2 class="st">The Living <em>Arts</em></h2>
+  </div>
+  <div class="hl-grid">
+    <!--
+    Onam Boat Race: images/onam.jpg
+    -->
+    <div class="hl-card reveal">
+      <img class="hl-img" src="images/onam.jpg" alt="Onam" loading="lazy"/>
+      <div class="hl-info"><p class="hl-cat">Festival · Aug–Sep · Kerala</p><h4 class="hl-name">Onam Snake Boat Race</h4><p class="hl-desc">Over 100 rowers in 100-foot-long snake boats race on Pampa River. The sound of 100 oars hitting water together is thunderous and unforgettable.</p></div>
+    </div>
+    <!--
+    Hampi for Bharatanatyam — using Hampi ruins image
+    -->
+    <div class="hl-card reveal">
+      <img class="hl-img" src="images/hampi-md.jpg" alt="Bharatanatyam" loading="lazy"/>
+      <div class="hl-info"><p class="hl-cat">Classical Dance · Tamil Nadu</p><h4 class="hl-name">Bharatanatyam</h4><p class="hl-desc">A 2,000-year-old classical dance form born in Tamil Nadu temples. Each eye movement, hand gesture (mudra), and footstep narrates a story from Hindu mythology.</p></div>
+    </div>
+    <!--
+    Kerala backwaters for Kathakali
+    -->
+    <div class="hl-card reveal">
+      <img class="hl-img" src="images/kerala-md.jpg" alt="Kathakali" loading="lazy"/>
+      <div class="hl-info"><p class="hl-cat">Performance Art · Kerala</p><h4 class="hl-name">Kathakali</h4><p class="hl-desc">Sacred dance-drama with elaborate makeup that takes 3–6 hours to apply. Performers use eye movements and hand gestures to tell stories without a single word spoken.</p></div>
+    </div>
+    <!--
+    Saffron/spice for Kerala Ayurveda
+    -->
+    <div class="hl-card reveal">
+      <img class="hl-img" src="images/saffron-md.jpg" alt="Ayurveda" loading="lazy"/>
+      <div class="hl-info"><p class="hl-cat">Ancient Healing · Kerala</p><h4 class="hl-name">Kerala Ayurveda</h4><p class="hl-desc">5,000-year-old science of healing using herbal oils, massages, and plant medicines. Monsoon is the best time for Panchakarma — the deepest cleansing treatment.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- QUOTE -->
+<div class="quote-blk reveal">
+  <p class="q-skt">सत्यम् शिवम् सुन्दरम्</p>
+  <p class="q-eng">"Truth, Auspiciousness, Beauty"</p>
+  <p class="q-src">— The three pillars of South Indian temple art and philosophy</p>
+</div>
+
+<!-- SOUTH FOOD -->
+<div class="wrap" style="background:var(--dark)">
+  <div class="reveal">
+    <p class="ey">✦ Flavours of the South ✦</p>
+    <h2 class="st">Food that <em>Nourishes the Spirit</em></h2>
+    <p class="sub">South Indian food is bright, rice-based, coconut-rich, and deeply spiced. Served on a banana leaf which adds its own flavour — a proper South Indian meal is a life-changing experience.</p>
+  </div>
+  <div class="fg">
+    <!--Masala Dosa: images/dosa.jpg-->
+    <div class="fg-item reveal"><img class="fg-img" src="images/dosa.jpg" alt="Dosa" loading="lazy"/><div class="fg-ov"><p class="fg-reg">Tamil Nadu</p><h4 class="fg-name">Masala Dosa</h4><p class="fg-note">Crispy rice crepe with spiced potato filling — South India's most iconic dish</p></div></div>
+    <!--Biryani: images/biryani.jpg>
+    <div class="fg-item reveal"><img class="fg-img" src="images/biryani.jpg" alt="Biryani" loading="lazy"/><div class="fg-ov"><p class="fg-reg">Hyderabad</p><h4 class="fg-name">Hyderabadi Biryani</h4><p class="fg-note">Dum-cooked basmati rice sealed in a pot — the Nizam's royal recipe</p></div></div>
+    <!--Kerala Fish Curry: images/kerala-fish-curry.jpg>
+    <div class="fg-item reveal"><img class="fg-img" src="images/kerala-fish-curry.jpg" alt="Kerala Fish" loading="lazy"/><div class="fg-ov"><p class="fg-reg">Kerala</p><h4 class="fg-name">Kerala Fish Curry</h4><p class="fg-note">Coconut milk, Kodampuli (kudampuli) fruit, and tiger prawns — liquid gold</p></div></div>
+    <!--Saffron/Spice for filter coffee-->
+    <div class="fg-item reveal"><img class="fg-img" src="images/saffron-md.jpg" alt="Spices" loading="lazy"/><div class="fg-ov"><p class="fg-reg">Karnataka</p><h4 class="fg-name">Filter Coffee &amp; Spices</h4><p class="fg-note">South Indian filter coffee poured from a height — deeply aromatic and utterly satisfying</p></div></div>
+  </div>
+</div>
+
+<div class="regnav">
+  <a href="north.html" class="rn-b">← North India</a>
+  <a href="east.html" class="rn-n">East India →</a>
+</div>
+<footer>
+  <p>© 2024 Incredible India · Student Project 🇮🇳</p>
+  <p style="font-family:'Tiro Devanagari Sanskrit',serif;font-size:1.1rem;color:var(--ac)">जय हिन्द</p>
+  <p>Jai Hind ✦ Jay Bharat</p>
+</footer>
+<script>
+function sw(id,th,src){document.getElementById(id).src=src;th.closest('.pb-thumbs').querySelectorAll('.pb-th').forEach(t=>t.classList.remove('on'));th.classList.add('on')}
+const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');obs.unobserve(el.target)}})},{threshold:.1});
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>obs.observe(el));
+
+/* ===== IMAGE FALLBACK: if local images/ missing, load from Wikimedia ===== */
+document.querySelectorAll('img[data-wiki]').forEach(function(img){
+  img.addEventListener('error', function(){
+    var wiki = this.getAttribute('data-wiki');
+    if(wiki && this.src !== wiki){ this.src = wiki; this.removeAttribute('data-wiki'); }
+  }, {once:true});
+});
+
+/* ===== BG IMAGE FALLBACK ===== */
+var bgFallbacks = {
+  "images/north-hero.jpg": "images/taj-hero.jpg",
+  "images/kashmir-dal-hero.jpg": "images/kashmir-hero.jpg",
+  "images/west-hero.jpg": "images/west-hero.jpg",
+  "images/goa-hero.jpg": "images/goa-hero.jpg",
+  "images/kerala-hero.jpg": "images/kerala-hero.jpg",
+  "images/south-hero.jpg": "images/kerala-hero.jpg",
+  "images/darjeeling-hero.jpg": "images/darjeeling-md.jpg"
+};
+document.querySelectorAll('[style*="background-image"]').forEach(function(el){
+  var style = el.getAttribute('style') || '';
+  var match = style.match(/url\(['"]?([^'"\)]+)['"]?\)/);
+  if(!match) return;
+  var localSrc = match[1];
+  var wikiSrc = bgFallbacks[localSrc];
+  if(!wikiSrc) return;
+  var tImg = new Image();
+  tImg.onerror = function(){ el.style.backgroundImage = "url('" + wikiSrc + "')"; };
+  tImg.src = localSrc;
+});
+</script>
+</body>
+</html>

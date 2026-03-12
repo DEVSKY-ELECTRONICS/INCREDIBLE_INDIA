@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Plan Your Trip — Incredible India</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;1,400&family=Tiro+Devanagari+Sanskrit&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--gold:#C9932A;--saffron:#E8651A;--dark:#0D0A05;--char:#1C1612;--cream:#FAF3E0;--muted:#7A6A52;--border:rgba(201,147,42,0.22)}
+html{scroll-behavior:smooth}
+body{font-family:'Crimson Pro',serif;background:var(--dark);color:var(--cream);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+.navbar{position:fixed;top:0;left:0;right:0;z-index:999;background:rgba(13,10,5,0.97);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1440px;margin:0 auto;padding:0 4%;height:66px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.nav-dot{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--saffron),var(--gold));display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.nav-brand{font-family:'Cinzel',serif;font-size:clamp(.72rem,1.4vw,.9rem);letter-spacing:2px;color:var(--cream);white-space:nowrap}
+.nav-links{display:flex;list-style:none;align-items:center}
+.nav-links li a{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:2px;color:rgba(250,243,224,.65);text-transform:uppercase;padding:8px 12px;white-space:nowrap;transition:color .3s;display:block}
+.nav-links li a:hover,.nav-links li a.active{color:var(--gold)}
+.nav-links .cta a{background:var(--saffron);color:#fff !important;padding:8px 16px}
+.hamburger{display:none;background:none;border:1px solid var(--border);color:var(--cream);padding:7px 11px;font-size:1.1rem;cursor:pointer;flex-shrink:0}
+.mob{display:none;flex-direction:column;background:rgba(13,10,5,0.99);border-top:1px solid var(--border);padding:14px 4%}
+.mob.open{display:flex}
+.mob a{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:3px;color:rgba(250,243,224,.72);text-transform:uppercase;padding:12px 0;border-bottom:1px solid rgba(201,147,42,.1);transition:color .3s}
+.mob a:hover{color:var(--gold)}
+@media(max-width:820px){.nav-links{display:none}.hamburger{display:flex}}
+.mob-drawer{display:none;position:fixed;top:62px;left:0;right:0;bottom:0;background:rgba(13,10,5,0.98);z-index:9998;flex-direction:column;padding:24px;gap:4px;overflow-y:auto}
+.mob-drawer.open{display:flex}
+.mob-drawer a{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:3px;color:rgba(250,243,224,.75);text-transform:uppercase;padding:16px 0;border-bottom:1px solid rgba(201,147,42,0.1);transition:color .3s}
+.mob-drawer a:last-child{border:none;background:var(--saffron);color:#fff!important;text-align:center;padding:16px;margin-top:12px}
+.mob-drawer a:hover{color:var(--gold)}
+.page-hero{height:60vh;min-height:400px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:0 8% 8%}
+.hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;animation:zoom 14s ease infinite alternate}
+@keyframes zoom{from{transform:scale(1)}to{transform:scale(1.07)}}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,10,5,.9) 0%,rgba(13,10,5,.3) 100%)}
+.hc{position:relative;z-index:2}
+.h-mantra{font-family:'Tiro Devanagari Sanskrit',serif;font-size:1.2rem;color:var(--gold);letter-spacing:3px;margin-bottom:14px;opacity:0;animation:fu 1s ease .3s forwards}
+.h-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,6vw,6rem);font-weight:300;line-height:.95;opacity:0;animation:fu 1s ease .7s forwards}
+.h-title em{font-style:italic;color:var(--saffron)}
+@keyframes fu{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.wrap{padding:80px 8%}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.form-section h2{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;line-height:1.1;margin-bottom:12px}
+.form-section h2 em{font-style:italic;color:var(--saffron)}
+.form-section p{font-size:1.05rem;color:rgba(250,243,224,.62);line-height:1.85;margin-bottom:32px}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:20px}
+.form-label{font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:3px;color:var(--gold);text-transform:uppercase}
+.form-in{background:rgba(250,243,224,.05);border:1px solid var(--border);color:var(--cream);font-family:'Crimson Pro',serif;font-size:1.05rem;padding:13px 18px;outline:none;transition:border-color .3s;width:100%}
+.form-in::placeholder{color:var(--muted)}
+.form-in:focus{border-color:var(--saffron)}
+select.form-in option{background:var(--char)}
+.form-btn{width:100%;background:var(--saffron);color:#fff;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:3px;padding:16px;border:none;cursor:pointer;text-transform:uppercase;transition:background .3s;margin-top:8px}
+.form-btn:hover{background:#bf4e0f}
+.form-msg{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:2px;color:var(--gold);margin-top:14px;min-height:20px}
+.info-cards{display:flex;flex-direction:column;gap:20px}
+.info-card{padding:28px;border:1px solid var(--border);background:var(--char)}
+.ic-icon{font-size:2rem;margin-bottom:12px}
+.ic-title{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:10px}
+.ic-text{font-size:1rem;color:rgba(250,243,224,.65);line-height:1.75}
+.faq-section{padding:80px 8%;background:var(--char);border-top:1px solid var(--border)}
+.faq-title{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;margin-bottom:8px}
+.faq-title em{font-style:italic;color:var(--saffron)}
+.faq-sub{font-size:1.05rem;color:rgba(250,243,224,.62);margin-bottom:48px}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:2px;color:var(--cream);text-transform:uppercase;padding:22px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;transition:color .3s}
+.faq-q:hover{color:var(--gold)}
+.faq-icon{font-size:1.2rem;flex-shrink:0;transition:transform .3s;color:var(--saffron)}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .5s ease,padding .3s}
+.faq-item.open .faq-a{max-height:300px;padding-bottom:22px}
+.faq-a p{font-size:1.05rem;color:rgba(250,243,224,.65);line-height:1.85}
+.mantra-band{background:var(--char);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:20px 5%;text-align:center}
+.mb-skt{font-family:'Tiro Devanagari Sanskrit',serif;font-size:1.3rem;color:var(--gold);letter-spacing:4px;animation:sh 3s ease infinite alternate}
+.mb-eng{font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:4px;color:var(--muted);text-transform:uppercase;margin-top:6px}
+@keyframes sh{from{opacity:.6}to{opacity:1}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+footer{background:var(--dark);border-top:1px solid var(--border);padding:32px 8%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+footer p{font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:3px;color:var(--muted);text-transform:uppercase}
+@media(max-width:900px){.contact-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.wrap{padding:56px 5%}footer{flex-direction:column;text-align:center}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-dot">🪔</div>
+      <span class="nav-brand">INCREDIBLE INDIA</span>
+    </a>
+    <button class="hamburger" onclick="document.getElementById('mob').classList.toggle('open')">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="north.html">North</a></li>
+      <li><a href="south.html">South</a></li>
+      <li><a href="east.html">East</a></li>
+      <li><a href="west.html">West</a></li>
+      <li class="cta"><a href="contact.html" class="active">Plan Trip</a></li>
+    </ul>
+  </div>
+  <div class="mob" id="mob">
+    <a href="index.html">Home</a><a href="north.html">North India</a>
+    <a href="south.html">South India</a><a href="east.html">East India</a>
+    <a href="west.html">West India</a><a href="contact.html">Contact</a>
+  </div>
+</nav>
+<div class="mob-drawer" id="drawer">
+  <a href="index.html" onclick="toggleMenu()">🏠 Home</a>
+  <a href="north.html" onclick="toggleMenu()">🏔️ North India</a>
+  <a href="south.html" onclick="toggleMenu()">🌴 South India</a>
+  <a href="east.html" onclick="toggleMenu()">🍵 East India</a>
+  <a href="west.html" onclick="toggleMenu()">🏜️ West India</a>
+  <a href="contact.html" onclick="toggleMenu()">✈️ Plan Your Trip</a>
+</div>
+
+<div class="page-hero">
+  <div class="hero-bg" style="background-image:url('images/taj-hero.jpg')"></div>
+  <div class="hero-ov"></div>
+  <div class="hc">
+    <p class="h-mantra">ॐ तत् सत्</p>
+    <h1 class="h-title">Plan Your <em>Journey</em></h1>
+  </div>
+</div>
+
+<div class="mantra-band">
+  <p class="mb-skt">स्वागतम् — Welcome to Incredible India</p>
+  <p class="mb-eng">✦ Every journey to India changes you forever ✦</p>
+</div>
+
+<div class="wrap">
+  <div class="contact-grid">
+    <div class="form-section reveal">
+      <h2>Plan Your <em>India Trip</em></h2>
+      <p>Tell us your dream — we'll help you build it. Fill the form and we'll send you a personalised India itinerary within 48 hours.</p>
+      <form onsubmit="handleForm(event)">
+        <div class="form-group">
+          <label class="form-label">Your Full Name</label>
+          <input class="form-in" type="text" placeholder="e.g. Priya Sharma" required/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input class="form-in" type="email" placeholder="your@email.com" required/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Which Region Interests You?</label>
+          <select class="form-in">
+            <option>All of India — Show me everything!</option>
+            <option>North India — Taj, Kashmir, Varanasi</option>
+            <option>South India — Kerala, Hampi, Tamil Nadu</option>
+            <option>East India — Darjeeling, Kolkata, Tigers</option>
+            <option>West India — Rajasthan, Goa, Mumbai</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Trip Duration</label>
+          <select class="form-in">
+            <option>5–7 days (short getaway)</option>
+            <option>10–14 days (recommended)</option>
+            <option>3–4 weeks (deep immersion)</option>
+            <option>1 month+ (the full India)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tell Us Your Dream Experience</label>
+          <textarea class="form-in" rows="4" placeholder="e.g. I want to see a Ganga Aarti, ride a Shikara in Kashmir, eat street food in Delhi..."></textarea>
+        </div>
+        <button class="form-btn" type="submit">Send My India Dream ✦</button>
+        <p class="form-msg" id="formMsg"></p>
+      </form>
+    </div>
+    <div class="info-cards reveal">
+      <div class="info-card">
+        <div class="ic-icon">✈️</div>
+        <h3 class="ic-title">Best Entry Points</h3>
+        <p class="ic-text">Delhi (North India), Mumbai (West), Kochi (South Kerala), Kolkata (East). All have major international airports. Delhi is usually the best starting point for first-time visitors.</p>
+      </div>
+      <div class="info-card">
+        <div class="ic-icon">📅</div>
+        <h3 class="ic-title">Best Time to Visit</h3>
+        <p class="ic-text"><strong>October–March</strong> is perfect India season — cool, dry, clear. <strong>March–June</strong> is hot but good for the mountains. <strong>June–September</strong> is monsoon — lush but wet. Avoid May–June for the plains.</p>
+      </div>
+      <div class="info-card">
+        <div class="ic-icon">🛂</div>
+        <h3 class="ic-title">Visa Information</h3>
+        <p class="ic-text">Most nationalities can apply for India e-Visa online at indianvisaonline.gov.in. Takes 48–72 hours. Cost is approximately ₹4,000–9,000 depending on your country. Valid for 30 or 60 days.</p>
+      </div>
+      <div class="info-card">
+        <div class="ic-icon">💰</div>
+        <h3 class="ic-title">Budget Guide</h3>
+        <p class="ic-text"><strong>Budget:</strong> ₹1,500–2,500/day (hostels, street food) · <strong>Mid-range:</strong> ₹4,000–8,000/day (hotels, restaurants) · <strong>Luxury:</strong> ₹15,000+/day (heritage palaces, fine dining)</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="faq-section">
+  <h2 class="faq-title">Frequently Asked <em>Questions</em></h2>
+  <p class="faq-sub">Everything you need to know before your India journey.</p>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>Is India safe to travel?</span><span class="faq-icon">+</span></div>
+    <div class="faq-a"><p>India is generally safe for tourists. The main tourist areas — Delhi, Agra, Jaipur, Goa, Kerala, Mumbai — are all well-patrolled with good tourist infrastructure. Use standard precautions: keep copies of documents, use app-based taxis (Ola/Uber), drink bottled water, and buy travel insurance. Female travellers should research their specific destinations.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>What vaccinations do I need?</span><span class="faq-icon">+</span></div>
+    <div class="faq-a"><p>Consult your doctor 6–8 weeks before travel. Commonly recommended: Hepatitis A, Typhoid, and Tetanus. Malaria prophylaxis is recommended for rural jungle areas (Sunderbans, Odisha). Ensure your Routine vaccinations (MMR, Polio) are up to date.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>What is the currency and how do payments work?</span><span class="faq-icon">+</span></div>
+    <div class="faq-a"><p>Indian Rupee (INR). ATMs are widely available in all cities. UPI (digital payment via QR codes) is universal — even street food vendors accept it. Most hotels and restaurants in tourist areas accept international cards. Always carry some cash for small purchases and auto-rickshaws.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>How do I get around India?</span><span class="faq-icon">+</span></div>
+    <div class="faq-a"><p>Indian Railways is the world's 4th largest rail network — book at irctc.co.in (book 2–3 months ahead for popular routes). Domestic flights are cheap (₹1,500–4,000 one way). For local travel use Ola/Uber apps. For Rajasthan, hire a private car with driver for 1–2 weeks.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>What should I wear in India?</span><span class="faq-icon">+</span></div>
+    <div class="faq-a"><p>India is conservative outside beach resorts. Cover knees and shoulders when visiting temples, mosques, and religious sites. Lightweight cotton is ideal for the heat. A dupatta (light scarf) is useful for women. In Rajasthan, a light shawl for cold desert nights. In Ladakh and Darjeeling, pack warm layers.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>What are the must-see places for a first-time visitor?</span><span class="faq-icon">+</span></div>
+    <div class="faq-a"><p>The Golden Triangle (Delhi–Agra–Jaipur) in 7 days is a classic first visit. Add Varanasi for spiritual India (2 days). Then extend to Goa or Kerala for beaches and nature. For a 2-week trip: Delhi → Agra (Taj Mahal) → Varanasi → Jaipur → Goa = the perfect introduction to India.</p></div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2024 Incredible India · Made with ❤️ 🇮🇳</p>
+  <p style="font-family:'Tiro Devanagari Sanskrit',serif;font-size:1.1rem;color:var(--gold)">अतिथि देवो भव</p>
+  <p>Jai Hind ✦ Jay Bharat</p>
+</footer>
+<script>
+function handleForm(e){
+  e.preventDefault();
+  const m=document.getElementById('formMsg');
+  m.textContent='✦ Wonderful! We will send your India itinerary within 48 hours. Namaste!';
+  e.target.reset();
+  setTimeout(()=>m.textContent='',6000);
+}
+function toggleFaq(el){
+  const item=el.closest('.faq-item');
+  const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+  if(!isOpen)item.classList.add('open');
+}
+const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');obs.unobserve(el.target)}})},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+/* ===== IMAGE FALLBACK: if local images/ missing, load from Wikimedia ===== */
+document.querySelectorAll('img[data-wiki]').forEach(function(img){
+  img.addEventListener('error', function(){
+    var wiki = this.getAttribute('data-wiki');
+    if(wiki && this.src !== wiki){ this.src = wiki; this.removeAttribute('data-wiki'); }
+  }, {once:true});
+});
+
+/* ===== BG IMAGE FALLBACK ===== */
+var bgFallbacks = {
+  "images/north-hero.jpg": "images/taj-hero.jpg",
+  "images/kashmir-dal-hero.jpg": "images/kashmir-hero.jpg",
+  "images/west-hero.jpg": "images/west-hero.jpg",
+  "images/goa-hero.jpg": "images/goa-hero.jpg",
+  "images/kerala-hero.jpg": "images/kerala-hero.jpg",
+  "images/south-hero.jpg": "images/kerala-hero.jpg",
+  "images/darjeeling-hero.jpg": "images/darjeeling-md.jpg"
+};
+document.querySelectorAll('[style*="background-image"]').forEach(function(el){
+  var style = el.getAttribute('style') || '';
+  var match = style.match(/url\(['"]?([^'"\)]+)['"]?\)/);
+  if(!match) return;
+  var localSrc = match[1];
+  var wikiSrc = bgFallbacks[localSrc];
+  if(!wikiSrc) return;
+  var tImg = new Image();
+  tImg.onerror = function(){ el.style.backgroundImage = "url('" + wikiSrc + "')"; };
+  tImg.src = localSrc;
+});
+function toggleMenu(){
+  var d=document.getElementById('drawer');
+  d.classList.toggle('open');
+  document.getElementById('hbtn').textContent=d.classList.contains('open')?'✕':'☰';
+}
+</script>
+</body>
+</html>

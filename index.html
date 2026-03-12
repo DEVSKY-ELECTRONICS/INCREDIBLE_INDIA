@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Incredible India — Explore the Soul of Bharat</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;1,400&family=Tiro+Devanagari+Sanskrit&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --saffron:#E8651A; --gold:#C9932A;
+  --dark:#0D0A05; --charcoal:#1C1612;
+  --cream:#FAF3E0; --muted:#7A6A52;
+  --border:rgba(201,147,42,0.22);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Crimson Pro',serif;background:var(--dark);color:var(--cream);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+
+/* ===== LOADER ===== */
+.loader{position:fixed;inset:0;background:var(--dark);z-index:10000;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.8s,visibility 0.8s}
+.loader.gone{opacity:0;visibility:hidden;pointer-events:none}
+.ldr-om{font-size:3.5rem;animation:om-pulse 1.5s ease-in-out infinite}
+.ldr-txt{font-family:'Cinzel',serif;font-size:1rem;color:var(--gold);letter-spacing:6px;margin-top:18px}
+.ldr-bar{width:180px;height:2px;background:rgba(255,255,255,0.08);margin-top:22px;overflow:hidden}
+.ldr-fill{height:100%;background:linear-gradient(90deg,var(--saffron),var(--gold));animation:bar-fill 2s ease forwards}
+@keyframes om-pulse{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.1);opacity:1}}
+@keyframes bar-fill{from{width:0}to{width:100%}}
+
+/* NAVBAR */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:9999;background:rgba(13,10,5,0.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1400px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.nav-dot{width:32px;height:32px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--saffron),var(--gold));display:flex;align-items:center;justify-content:center;font-size:.95rem}
+.nav-brand{font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:2.5px;color:var(--cream);white-space:nowrap}
+.nav-links{display:flex;align-items:center;list-style:none}
+.nav-links a{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:2px;color:rgba(250,243,224,.6);text-transform:uppercase;padding:8px 14px;white-space:nowrap;transition:color .3s;display:block}
+.nav-links a:hover,.nav-links a.active{color:var(--gold)}
+.nav-links .cta-li a{background:var(--saffron);color:#fff!important;padding:8px 18px;margin-left:8px}
+.nav-links .cta-li a:hover{background:#c04408}
+.hamburger{display:none;background:none;border:1px solid var(--border);color:var(--cream);width:38px;height:38px;font-size:1.1rem;cursor:pointer;flex-shrink:0;align-items:center;justify-content:center;transition:border-color .3s}
+.hamburger:hover{border-color:var(--gold)}
+.mob-drawer{display:none;position:fixed;top:62px;left:0;right:0;bottom:0;background:rgba(13,10,5,0.98);z-index:9998;flex-direction:column;padding:24px;gap:4px;overflow-y:auto}
+.mob-drawer.open{display:flex}
+.mob-drawer a{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:3px;color:rgba(250,243,224,.75);text-transform:uppercase;padding:16px 0;border-bottom:1px solid rgba(201,147,42,0.1);transition:color .3s}
+.mob-drawer a:last-child{border:none;background:var(--saffron);color:#fff!important;text-align:center;padding:16px;margin-top:12px}
+.mob-drawer a:hover{color:var(--gold)}
+@media(max-width:820px){.nav-links{display:none}.hamburger{display:flex}}
+
+/* ===== HERO ===== */
+.hero{position:relative;height:100vh;min-height:580px;overflow:hidden}
+.hero-slides{position:absolute;inset:0}
+.h-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.5s ease;background-size:cover;background-position:center}
+.h-slide.on{opacity:1}
+.h-slide::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(13,10,5,0.25) 0%,rgba(13,10,5,0.1) 40%,rgba(13,10,5,0.82) 100%)}
+.hero-body{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:0 8% 9%}
+.h-mantra{font-family:'Tiro Devanagari Sanskrit',serif;font-size:1.2rem;color:var(--gold);letter-spacing:3px;margin-bottom:14px;opacity:0;animation:fadeUp 1s ease 0.4s forwards}
+.h-tag{font-family:'Cinzel',serif;font-size:0.62rem;letter-spacing:6px;color:var(--saffron);text-transform:uppercase;margin-bottom:14px;opacity:0;animation:fadeUp 1s ease 0.7s forwards}
+.h-title{font-family:'Cormorant Garamond',serif;font-size:clamp(3.4rem,9vw,8.5rem);font-weight:300;line-height:0.92;margin-bottom:22px;opacity:0;animation:fadeUp 1s ease 1s forwards}
+.h-title em{font-style:italic;color:var(--saffron)}
+.h-sub{font-size:1.18rem;color:rgba(250,243,224,0.72);line-height:1.85;max-width:520px;margin-bottom:36px;opacity:0;animation:fadeUp 1s ease 1.3s forwards}
+.h-btns{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:fadeUp 1s ease 1.6s forwards}
+.btn-p{display:inline-block;background:var(--saffron);color:#fff;font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:3px;padding:14px 32px;text-transform:uppercase;transition:background 0.3s}
+.btn-p:hover{background:#bf4e0f}
+.btn-g{display:inline-block;background:transparent;color:var(--cream);font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:3px;padding:13px 32px;border:1px solid rgba(250,243,224,0.35);text-transform:uppercase;transition:all 0.3s}
+.btn-g:hover{border-color:var(--saffron);color:var(--saffron)}
+/* slider controls */
+.h-dots{position:absolute;bottom:3.5%;left:50%;transform:translateX(-50%);z-index:3;display:flex;gap:8px}
+.h-dot{width:24px;height:2px;background:rgba(250,243,224,0.3);cursor:pointer;transition:all 0.3s;border:none}
+.h-dot.on{background:var(--saffron);width:48px}
+.h-count{position:absolute;right:5%;bottom:5%;z-index:3;font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:300;color:var(--saffron);line-height:1}
+.h-count span{display:block;font-family:'Cinzel',serif;font-size:0.56rem;letter-spacing:4px;color:rgba(250,243,224,0.45);font-weight:400}
+
+/* ===== MARQUEE ===== */
+.marquee{background:var(--saffron);padding:13px 0;overflow:hidden}
+.mq-inner{display:flex;animation:mq-scroll 28s linear infinite;white-space:nowrap}
+.mq-item{font-family:'Cinzel',serif;font-size:0.67rem;letter-spacing:3px;color:#fff;padding:0 36px;opacity:.88}
+.mq-dot{color:rgba(255,255,255,0.4);padding:0 4px}
+@keyframes mq-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ===== MANTRA BAND ===== */
+.mantra-band{background:var(--charcoal);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:24px 5%;text-align:center}
+.mb-skt{font-family:'Tiro Devanagari Sanskrit',serif;font-size:1.4rem;color:var(--gold);letter-spacing:4px;animation:shimmer 3s ease-in-out infinite alternate}
+.mb-eng{font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:4px;color:var(--muted);text-transform:uppercase;margin-top:8px}
+@keyframes shimmer{from{opacity:.6}to{opacity:1}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+
+/* ===== ICONS STRIP ===== */
+.icons-section{padding:56px 5%;background:var(--charcoal)}
+.icons-title{text-align:center;font-family:'Cinzel',serif;font-size:0.62rem;letter-spacing:5px;color:var(--gold);text-transform:uppercase;margin-bottom:44px}
+.icons-row{display:flex;justify-content:center;flex-wrap:wrap;gap:32px}
+.icon-item{display:flex;flex-direction:column;align-items:center;gap:12px;cursor:pointer;transition:transform 0.3s}
+.icon-item:hover{transform:translateY(-6px)}
+.icon-circle{width:74px;height:74px;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;background:rgba(201,147,42,0.05);transition:all 0.3s}
+.icon-item:hover .icon-circle{background:rgba(232,101,26,0.12);border-color:var(--saffron)}
+.icon-lbl{font-family:'Cinzel',serif;font-size:0.55rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;text-align:center}
+
+/* ===== REGIONS ===== */
+.regions{background:var(--dark)}
+.region-row{display:grid;grid-template-columns:1fr 1fr;min-height:88vh;overflow:hidden}
+.region-row.flip{direction:rtl}
+.region-row.flip>*{direction:ltr}
+.rg-visual{position:relative;overflow:hidden}
+.rg-img{width:100%;height:100%;object-fit:cover;min-height:520px;display:block;transition:transform 0.7s ease}
+.rg-visual:hover .rg-img{transform:scale(1.05)}
+.rg-badge{position:absolute;top:28px;left:28px;background:var(--saffron);color:#fff;font-family:'Cinzel',serif;font-size:0.56rem;letter-spacing:3px;padding:7px 15px;text-transform:uppercase;z-index:1}
+.rg-content{padding:72px 56px;display:flex;flex-direction:column;justify-content:center;background:var(--charcoal);position:relative;overflow:hidden}
+.rg-content::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(to bottom,transparent,var(--saffron),transparent)}
+.rg-bignum{font-family:'Cormorant Garamond',serif;font-size:9rem;font-weight:300;color:rgba(201,147,42,0.05);position:absolute;bottom:-10px;right:16px;line-height:1;pointer-events:none}
+.rg-tag{font-family:'Cinzel',serif;font-size:0.56rem;letter-spacing:5px;color:var(--saffron);text-transform:uppercase;margin-bottom:14px}
+.rg-name{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3.2rem);font-weight:300;line-height:1.1;color:var(--cream);margin-bottom:18px}
+.rg-name em{font-style:italic;color:var(--saffron)}
+.rg-desc{font-size:1.05rem;color:rgba(250,243,224,0.65);line-height:1.9;margin-bottom:28px}
+.rg-tags{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:28px}
+.rg-pill{font-family:'Cinzel',serif;font-size:0.52rem;letter-spacing:2px;color:var(--gold);border:1px solid rgba(201,147,42,0.28);padding:6px 13px;text-transform:uppercase}
+.rg-link{font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:3px;color:var(--saffron);text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;transition:gap 0.3s}
+.rg-link:hover{gap:18px}
+
+/* ===== SLIDER SECTION ===== */
+.slider-section{padding:90px 8%;background:var(--charcoal)}
+.sl-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;flex-wrap:wrap;gap:16px}
+.sl-nav{display:flex;gap:10px}
+.sl-btn{width:46px;height:46px;border:1px solid var(--border);background:transparent;color:var(--cream);font-size:1.1rem;cursor:pointer;transition:all 0.3s;display:flex;align-items:center;justify-content:center}
+.sl-btn:hover{background:var(--saffron);border-color:var(--saffron)}
+.sl-track-wrap{overflow:hidden}
+.sl-track{display:flex;gap:18px;transition:transform 0.6s cubic-bezier(.25,.46,.45,.94)}
+.sl-card{min-width:320px;position:relative;overflow:hidden;flex-shrink:0;cursor:pointer}
+.sl-card img{width:100%;height:420px;object-fit:cover;display:block;transition:transform 0.5s}
+.sl-card:hover img{transform:scale(1.05)}
+.sl-ov{position:absolute;bottom:0;left:0;right:0;padding:32px 24px 24px;background:linear-gradient(to top,rgba(13,10,5,0.92),transparent)}
+.sl-state{font-family:'Cinzel',serif;font-size:0.52rem;letter-spacing:3px;color:var(--saffron);text-transform:uppercase;margin-bottom:6px}
+.sl-name{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:300;color:var(--cream);margin-bottom:6px}
+.sl-desc{font-size:0.88rem;color:rgba(250,243,224,0.6)}
+.sl-arr{position:absolute;top:18px;right:18px;width:38px;height:38px;background:rgba(232,101,26,0.85);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.9rem;opacity:0;transform:translateY(-6px);transition:all 0.3s}
+.sl-card:hover .sl-arr{opacity:1;transform:translateY(0)}
+
+/* ===== MOSAIC ===== */
+.mosaic-section{padding:90px 8%;background:var(--dark)}
+.mosaic-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:repeat(3,200px);gap:6px;margin-top:56px}
+.mo-item{overflow:hidden;position:relative;cursor:pointer}
+.mo-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s,filter 0.4s}
+.mo-item:hover img{transform:scale(1.08);filter:brightness(1.1)}
+.mo-item::after{content:attr(data-lbl);position:absolute;bottom:0;left:0;right:0;padding:14px 12px;background:linear-gradient(to top,rgba(0,0,0,0.72),transparent);font-family:'Cinzel',serif;font-size:0.52rem;letter-spacing:3px;color:rgba(255,255,255,0.85);text-transform:uppercase;opacity:0;transform:translateY(6px);transition:all 0.3s}
+.mo-item:hover::after{opacity:1;transform:translateY(0)}
+.m1{grid-column:1/5;grid-row:1/3} .m2{grid-column:5/9;grid-row:1/2}
+.m3{grid-column:9/13;grid-row:1/2} .m4{grid-column:5/7;grid-row:2/3}
+.m5{grid-column:7/9;grid-row:2/3} .m6{grid-column:9/13;grid-row:2/3}
+.m7{grid-column:1/4;grid-row:3/4} .m8{grid-column:4/7;grid-row:3/4}
+.m9{grid-column:7/10;grid-row:3/4} .m10{grid-column:10/13;grid-row:3/4}
+
+/* ===== FESTIVALS ===== */
+.fest-section{padding:90px 8%;background:var(--charcoal)}
+.fest-scroll{display:flex;gap:20px;overflow-x:auto;margin-top:52px;padding-bottom:12px;scrollbar-width:thin;scrollbar-color:var(--saffron) transparent}
+.fest-card{min-width:260px;position:relative;overflow:hidden;flex-shrink:0}
+.fest-card img{width:100%;height:340px;object-fit:cover;display:block;transition:transform 0.5s}
+.fest-card:hover img{transform:scale(1.06)}
+.fest-card::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(13,10,5,0.88) 0%,rgba(13,10,5,0.1) 55%,transparent 100%)}
+.fest-info{position:absolute;bottom:0;left:0;right:0;padding:22px 18px;z-index:1}
+.fest-month{font-family:'Cinzel',serif;font-size:0.52rem;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:5px}
+.fest-name{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:300;color:var(--cream);margin-bottom:3px}
+.fest-loc{font-size:0.84rem;color:rgba(250,243,224,0.55)}
+
+/* ===== FOOD ===== */
+.food-section{padding:90px 8%;background:var(--dark)}
+.food-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:52px}
+.fo-item{position:relative;overflow:hidden;aspect-ratio:1}
+.fo-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s,filter 0.4s}
+.fo-item:hover img{transform:scale(1.08);filter:brightness(1.12)}
+.fo-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.82) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:18px 15px;transform:translateY(6px);transition:transform 0.3s}
+.fo-item:hover .fo-ov{transform:translateY(0)}
+.fo-reg{font-family:'Cinzel',serif;font-size:0.5rem;letter-spacing:3px;color:var(--saffron);text-transform:uppercase;margin-bottom:3px}
+.fo-name{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:300;color:#fff}
+
+/* ===== STATS ===== */
+.stats{padding:72px 8%;background:var(--saffron);display:grid;grid-template-columns:repeat(4,1fr)}
+.stat-item{text-align:center;padding:16px;border-right:1px solid rgba(255,255,255,0.25)}
+.stat-item:last-child{border-right:none}
+.stat-n{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:300;color:#fff;line-height:1}
+.stat-l{font-family:'Cinzel',serif;font-size:0.56rem;letter-spacing:4px;color:rgba(255,255,255,0.75);text-transform:uppercase;margin-top:7px}
+
+/* ===== NEWSLETTER ===== */
+.nl-section{padding:90px 8%;background:var(--charcoal);display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;border-top:1px solid var(--border)}
+.nl-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3.2rem);font-weight:300;line-height:1.1;margin-bottom:14px}
+.nl-title em{font-style:italic;color:var(--saffron)}
+.nl-sub{font-size:1.05rem;color:rgba(250,243,224,0.62);line-height:1.85}
+.nl-form{display:flex;flex-direction:column;gap:14px}
+.nl-in{background:rgba(250,243,224,0.05);border:1px solid var(--border);color:var(--cream);font-family:'Crimson Pro',serif;font-size:1.05rem;padding:14px 20px;outline:none;transition:border-color 0.3s}
+.nl-in::placeholder{color:var(--muted)}
+.nl-in:focus{border-color:var(--saffron)}
+.nl-btn{background:var(--saffron);color:#fff;font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:3px;padding:15px;border:none;cursor:pointer;text-transform:uppercase;transition:background 0.3s}
+.nl-btn:hover{background:#bf4e0f}
+.nl-msg{font-family:'Cinzel',serif;font-size:0.75rem;letter-spacing:2px;color:var(--gold);min-height:18px}
+
+/* ===== FOOTER ===== */
+footer{background:var(--dark);border-top:1px solid var(--border)}
+.ft-top{padding:72px 8%;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px}
+.ft-brand h3{font-family:'Cinzel',serif;font-size:1rem;color:var(--cream);letter-spacing:2px;margin-bottom:14px}
+.ft-brand p{font-size:1rem;color:var(--muted);line-height:1.8;margin-bottom:20px}
+.ft-col h4{font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:20px}
+.ft-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.ft-col ul a{font-size:0.95rem;color:var(--muted);transition:color 0.3s}
+.ft-col ul a:hover{color:var(--saffron)}
+.ft-bottom{padding:22px 8%;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.ft-bottom p{font-family:'Cinzel',serif;font-size:0.55rem;letter-spacing:3px;color:rgba(122,106,82,0.55);text-transform:uppercase}
+
+/* ===== REVEAL ANIMATIONS ===== */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.75s ease,transform 0.75s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-l{opacity:0;transform:translateX(-28px);transition:opacity 0.75s ease,transform 0.75s ease}
+.reveal-l.visible{opacity:1;transform:translateX(0)}
+.reveal-r{opacity:0;transform:translateX(28px);transition:opacity 0.75s ease,transform 0.75s ease}
+.reveal-r.visible{opacity:1;transform:translateX(0)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1100px){
+  .ft-top{grid-template-columns:1fr 1fr}
+  .food-grid{grid-template-columns:repeat(2,1fr)}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stat-item:nth-child(2){border-right:none}
+  .nl-section{grid-template-columns:1fr}
+}
+@media(max-width:900px){
+  .region-row,.region-row.flip{grid-template-columns:1fr;direction:ltr}
+  .region-row.flip>*{direction:ltr}
+  .rg-img{min-height:340px;height:55vw}
+  .rg-content{padding:44px 32px}
+  .mosaic-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto;display:flex;flex-wrap:wrap}
+  .mo-item{flex:1 1 45%;height:180px}
+  .m1{flex:1 1 100%;height:260px}
+}
+@media(max-width:600px){
+  .food-grid{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .ft-top{grid-template-columns:1fr}
+  .ft-bottom{flex-direction:column;text-align:center}
+  .h-btns{flex-direction:column}
+  section,.nl-section{padding-left:5%;padding-right:5%}
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div class="loader" id="loader">
+  <div class="ldr-om">🕉️</div>
+  <div class="ldr-txt">INCREDIBLE INDIA</div>
+  <div class="ldr-bar"><div class="ldr-fill"></div></div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-dot">🪔</div>
+      <span class="nav-brand">INCREDIBLE INDIA</span>
+    </a>
+    <button class="hamburger" onclick="document.getElementById('mob').classList.toggle('open')">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="north.html">North</a></li>
+      <li><a href="south.html">South</a></li>
+      <li><a href="east.html">East</a></li>
+      <li><a href="west.html">West</a></li>
+      <li class="nav-cta"><a href="contact.html">Plan Trip</a></li>
+    </ul>
+  </div>
+  <div class="mob-menu" id="mob">
+    <a href="index.html">Home</a>
+    <a href="north.html">North India</a>
+    <a href="south.html">South India</a>
+    <a href="east.html">East India</a>
+    <a href="west.html">West India</a>
+    <a href="contact.html">Contact / Plan Trip</a>
+  </div>
+</nav>
+<div class="mob-drawer" id="drawer">
+  <a href="index.html" onclick="toggleMenu()">🏠 Home</a>
+  <a href="north.html" onclick="toggleMenu()">🏔️ North India</a>
+  <a href="south.html" onclick="toggleMenu()">🌴 South India</a>
+  <a href="east.html" onclick="toggleMenu()">🍵 East India</a>
+  <a href="west.html" onclick="toggleMenu()">🏜️ West India</a>
+  <a href="contact.html" onclick="toggleMenu()">✈️ Plan Your Trip</a>
+</div>
+
+<!-- ===================== HERO ===================== -->
+<!--
+  HERO SLIDE IMAGES — 5 images auto-rotate every 5 seconds
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SLIDE 1 — Taj Mahal, Agra
+  DOWNLOAD: images/taj-hero.jpg
+  SAVE AS: images/hero-taj.jpg
+
+  SLIDE 2 — Dal Lake, Kashmir (Shikara boats at sunrise)
+  DOWNLOAD: images/kashmir-hero.jpg
+  SAVE AS: images/hero-kashmir.jpg
+
+  SLIDE 3 — Amber Fort, Jaipur, Rajasthan
+  DOWNLOAD: images/west-hero.jpg
+  SAVE AS: images/hero-rajasthan.jpg
+
+  SLIDE 4 — Baga Beach, Goa
+  DOWNLOAD: images/goa-hero.jpg
+  SAVE AS: images/hero-goa.jpg
+
+  SLIDE 5 — Kerala Backwaters
+  DOWNLOAD: images/kerala-hero.jpg
+  SAVE AS: images/hero-kerala.jpg
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+-->
+<section class="hero" id="hero">
+  <div class="hero-slides">
+    <div class="h-slide on"  style="background-image:url('images/taj-hero.jpg')"></div>
+    <div class="h-slide" style="background-image:url('images/kashmir-hero.jpg')"></div>
+    <div class="h-slide" style="background-image:url('images/west-hero.jpg')"></div>
+    <div class="h-slide" style="background-image:url('images/goa-hero.jpg')"></div>
+    <div class="h-slide" style="background-image:url('images/kerala-hero.jpg')"></div>
+  </div>
+  <div class="hero-body">
+    <p class="h-mantra">ॐ नमो भगवते वासुदेवाय</p>
+    <p class="h-tag">✦ Atithi Devo Bhava — The Guest is God ✦</p>
+    <h1 class="h-title"><em>Incredible</em><br/><strong style="font-weight:600">India</strong></h1>
+    <p class="h-sub">5,000 years of civilisation. 29 states, countless souls. One journey that will change you forever.</p>
+    <div class="h-btns">
+      <a href="north.html" class="btn-p">Begin Your Journey</a>
+      <a href="#regions" class="btn-g">Explore Regions</a>
+    </div>
+  </div>
+  <div class="h-dots" id="hDots">
+    <button class="h-dot on" onclick="goSlide(0)"></button>
+    <button class="h-dot" onclick="goSlide(1)"></button>
+    <button class="h-dot" onclick="goSlide(2)"></button>
+    <button class="h-dot" onclick="goSlide(3)"></button>
+    <button class="h-dot" onclick="goSlide(4)"></button>
+  </div>
+  <div class="h-count"><span id="hNum">01</span><span>/ 05</span></div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="mq-inner">
+    <span class="mq-item">🕌 Taj Mahal</span><span class="mq-dot">✦</span>
+    <span class="mq-item">🏔️ Himalayas</span><span class="mq-dot">✦</span>
+    <span class="mq-item">🌊 Goa Beaches</span><span class="mq-dot">✦</span>
+    <span class="mq-item">🛶 Kashmir Dal Lake</span><span class="mq-dot">✦</span>
+    <span class="mq-item">🌴 Kerala Backwaters</span><span class="mq-dot">✦</span>
+    <span class="mq-item">🏰 Rajasthan Forts</span><span class="mq-dot">✦</span>
+    <span class="mq-item">🐅 Sunderbans Tiger</span><span class="mq-dot">✦</span>
+    <span class="mq-item">⛩️ Hampi Ruins</span><span class="mq-dot">✦</span>
+    <span class="mq-item">🎭 Diwali Festival</span><span class="mq-dot">✦</span>
+    <span class="mq-item">🍛 Biryani & Dosas</span><span class="mq-dot">✦</span>
+    <!-- duplicate for seamless loop -->
+    <span class="mq-item">🕌 Taj Mahal</span><span class="mq-dot">✦</span>
+    <span class="mq-item">🏔️ Himalayas</span><span class="mq-dot">✦</span>
+    <span class="mq-item">🌊 Goa Beaches</span><span class="mq-dot">✦</span>
+    <span class="mq-item">🛶 Kashmir Dal Lake</span><span class="mq-dot">✦</span>
+    <span class="mq-item">🌴 Kerala Backwaters</span><span class="mq-dot">✦</span>
+    <span class="mq-item">🏰 Rajasthan Forts</span><span class="mq-dot">✦</span>
+    <span class="mq-item">🐅 Sunderbans Tiger</span><span class="mq-dot">✦</span>
+    <span class="mq-item">⛩️ Hampi Ruins</span><span class="mq-dot">✦</span>
+    <span class="mq-item">🎭 Diwali Festival</span><span class="mq-dot">✦</span>
+    <span class="mq-item">🍛 Biryani & Dosas</span><span class="mq-dot">✦</span>
+  </div>
+</div>
+
+<!-- MANTRA BAND -->
+<div class="mantra-band">
+  <p class="mb-skt">वसुधैव कुटुम्बकम् — The World is One Family</p>
+  <p class="mb-eng">✦ Maha Upanishad ✦ The oldest welcome in human history ✦</p>
+</div>
+
+<!-- CULTURAL ICONS -->
+<div class="icons-section">
+  <p class="icons-title">✦ The Spirit of India ✦</p>
+  <div class="icons-row">
+    <div class="icon-item reveal"><div class="icon-circle">🕉️</div><span class="icon-lbl">Spirituality</span></div>
+    <div class="icon-item reveal"><div class="icon-circle">🏛️</div><span class="icon-lbl">Architecture</span></div>
+    <div class="icon-item reveal"><div class="icon-circle">🪗</div><span class="icon-lbl">Folk Music</span></div>
+    <div class="icon-item reveal"><div class="icon-circle">💃</div><span class="icon-lbl">Classical Dance</span></div>
+    <div class="icon-item reveal"><div class="icon-circle">🎨</div><span class="icon-lbl">Art & Craft</span></div>
+    <div class="icon-item reveal"><div class="icon-circle">🍛</div><span class="icon-lbl">Cuisine</span></div>
+    <div class="icon-item reveal"><div class="icon-circle">🎊</div><span class="icon-lbl">Festivals</span></div>
+    <div class="icon-item reveal"><div class="icon-circle">🐘</div><span class="icon-lbl">Wildlife</span></div>
+    <div class="icon-item reveal"><div class="icon-circle">🧵</div><span class="icon-lbl">Textiles</span></div>
+    <div class="icon-item reveal"><div class="icon-circle">🧘</div><span class="icon-lbl">Yoga</span></div>
+  </div>
+</div>
+
+<!-- ===================== 4 REGIONS ===================== -->
+<div class="regions" id="regions">
+
+  <!-- NORTH INDIA -->
+  <!--
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  NORTH INDIA IMAGE — Taj Mahal or Varanasi Ghat
+  DOWNLOAD: images/taj-1.jpg
+  SAVE AS: images/region-north.jpg
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  -->
+  <div class="region-row reveal">
+    <div class="rg-visual">
+      <div class="rg-badge">Region 01</div>
+      <img class="rg-img" src="images/taj-1.jpg" alt="North India — Taj Mahal" loading="lazy"/>
+    </div>
+    <div class="rg-content">
+      <span class="rg-bignum">01</span>
+      <p class="rg-tag">✦ The Sacred North ✦</p>
+      <h2 class="rg-name">Mountains,<br/>Moghuls <em>&amp; Mist</em></h2>
+      <p class="rg-desc">Snow-crowned Himalayas. The Taj shimmering at dawn. Varanasi's ancient ghats where the Ganga flows eternal. Kashmir's saffron and shikara boats. Ladakh's monasteries at 4,000m. The Golden Triangle — Delhi, Agra, Jaipur — and beyond.</p>
+      <div class="rg-tags">
+        <span class="rg-pill">❄️ Snow Peaks</span>
+        <span class="rg-pill">🕌 Mughal Forts</span>
+        <span class="rg-pill">🌅 Ganga Aarti</span>
+        <span class="rg-pill">🍢 Chaat &amp; Kebabs</span>
+        <span class="rg-pill">🎭 Holi &amp; Diwali</span>
+      </div>
+      <a href="north.html" class="rg-link">Explore North India →</a>
+    </div>
+  </div>
+
+  <!-- SOUTH INDIA -->
+  <!--
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SOUTH INDIA IMAGE — Kerala Backwaters
+  DOWNLOAD: images/kerala.jpg
+  SAVE AS: images/region-south.jpg
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  -->
+  <div class="region-row flip reveal">
+    <div class="rg-visual">
+      <div class="rg-badge">Region 02</div>
+      <img class="rg-img" src="images/kerala.jpg" alt="South India — Kerala Backwaters" loading="lazy"/>
+    </div>
+    <div class="rg-content">
+      <span class="rg-bignum">02</span>
+      <p class="rg-tag">✦ The Mystical South ✦</p>
+      <h2 class="rg-name">Temples, Tea<br/><em>&amp; Turquoise Seas</em></h2>
+      <p class="rg-desc">Towering Dravidian temples painted vivid colours. Kerala's mirror-calm backwaters drifting through coconut groves. Spice gardens breathing cardamom into misty air. Hampi's stone empire frozen in time. The south is ancient, lush, and endlessly beautiful.</p>
+      <div class="rg-tags">
+        <span class="rg-pill">⛩️ Dravidian Temples</span>
+        <span class="rg-pill">🌴 Kerala Backwaters</span>
+        <span class="rg-pill">🌿 Spice Gardens</span>
+        <span class="rg-pill">🥘 Biryani &amp; Dosa</span>
+        <span class="rg-pill">🐘 Elephant Festival</span>
+      </div>
+      <a href="south.html" class="rg-link">Explore South India →</a>
+    </div>
+  </div>
+
+  <!-- EAST INDIA -->
+  <!--
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  EAST INDIA IMAGE — Darjeeling Tea Gardens
+  DOWNLOAD: images/darjeeling.jpg
+  SAVE AS: images/region-east.jpg
+  (if above doesn't load, use the Kolkata one below)
+  ALT: images/kolkata.jpg
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  -->
+  <div class="region-row reveal">
+    <div class="rg-visual">
+      <div class="rg-badge">Region 03</div>
+      <img class="rg-img"
+        src="images/darjeeling.jpg"
+        onerror="this.src='images/kolkata.jpg'"
+        alt="East India" loading="lazy"/>
+    </div>
+    <div class="rg-content">
+      <span class="rg-bignum">03</span>
+      <p class="rg-tag">✦ The Soulful East ✦</p>
+      <h2 class="rg-name">Tigers, Tea<br/><em>&amp; Tagore</em></h2>
+      <p class="rg-desc">Kolkata — where intellect meets emotion. The Sunderbans where Royal Bengal Tigers roam mangrove mazes. Darjeeling's tea gardens draped in morning mist. Odisha's Sun Temple. Meghalaya's living root bridges. A region of poets, artists, and quiet wonder.</p>
+      <div class="rg-tags">
+        <span class="rg-pill">🐅 Sundarban Tiger</span>
+        <span class="rg-pill">🍵 Darjeeling Tea</span>
+        <span class="rg-pill">🎨 Kolkata Culture</span>
+        <span class="rg-pill">🍬 Rosogolla</span>
+        <span class="rg-pill">🎭 Durga Puja</span>
+      </div>
+      <a href="east.html" class="rg-link">Explore East India →</a>
+    </div>
+  </div>
+
+  <!-- WEST INDIA -->
+  <!--
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  WEST INDIA IMAGE — Amber Fort, Jaipur
+  DOWNLOAD: images/amber-fort.jpg
+  SAVE AS: images/region-west.jpg
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  -->
+  <div class="region-row flip reveal">
+    <div class="rg-visual">
+      <div class="rg-badge">Region 04</div>
+      <img class="rg-img" src="images/amber-fort.jpg" alt="West India — Rajasthan" loading="lazy"/>
+    </div>
+    <div class="rg-content">
+      <span class="rg-bignum">04</span>
+      <p class="rg-tag">✦ The Vibrant West ✦</p>
+      <h2 class="rg-name">Deserts, Beaches<br/><em>&amp; Bollywood</em></h2>
+      <p class="rg-desc">Golden Rajasthan forts rising from Thar Desert sands. Mumbai — where dreams are made. Goa's sunlit beaches where Portuguese and Indian cultures fuse. Gujarat's ancient Rann of Kutch and its extraordinary salt desert and crafts.</p>
+      <div class="rg-tags">
+        <span class="rg-pill">🏜️ Thar Desert</span>
+        <span class="rg-pill">🏖️ Goa Beaches</span>
+        <span class="rg-pill">🎬 Mumbai Bollywood</span>
+        <span class="rg-pill">🐪 Camel Safari</span>
+        <span class="rg-pill">🎊 Pushkar Mela</span>
+      </div>
+      <a href="west.html" class="rg-link">Explore West India →</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===================== PLACES SLIDER ===================== -->
+<section class="slider-section">
+  <div class="sl-header">
+    <div>
+      <p class="eyebrow reveal" style="font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:5px;color:var(--gold);text-transform:uppercase;margin-bottom:12px">✦ Must-See Places ✦</p>
+      <h2 class="reveal" style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.8rem);font-weight:300;line-height:1.1">Iconic <em style="color:var(--saffron);font-style:italic">Destinations</em></h2>
+    </div>
+    <div class="sl-nav">
+      <button class="sl-btn" onclick="slideL()">←</button>
+      <button class="sl-btn" onclick="slideR()">→</button>
+    </div>
+  </div>
+  <div class="sl-track-wrap">
+    <div class="sl-track" id="slTrack">
+
+      <!-- Each card: image URL listed in comment above it -->
+
+      <!-- Taj Mahal: images/taj-1.jpg -->
+      <div class="sl-card" onclick="location='north.html#taj'">
+        <img src="images/taj-1.jpg" alt="Taj Mahal"/>
+        <div class="sl-ov"><p class="sl-state">Agra · Uttar Pradesh</p><h3 class="sl-name">Taj Mahal</h3><p class="sl-desc">Monument of eternal love in white marble</p></div>
+        <div class="sl-arr">→</div>
+      </div>
+
+      <!-- Kashmir Dal Lake: images/kashmir-dal.jpg -->
+      <div class="sl-card" onclick="location='north.html#kashmir'">
+        <img src="images/kashmir-dal.jpg" alt="Kashmir"/>
+        <div class="sl-ov"><p class="sl-state">J&amp;K · Paradise</p><h3 class="sl-name">Kashmir</h3><p class="sl-desc">Heaven on Earth — shikara rides on Dal Lake</p></div>
+        <div class="sl-arr">→</div>
+      </div>
+
+      <!-- Goa Beach: images/goa.jpg -->
+      <div class="sl-card" onclick="location='west.html#goa'">
+        <img src="images/goa.jpg" alt="Goa"/>
+        <div class="sl-ov"><p class="sl-state">Goa · Beach</p><h3 class="sl-name">Goa</h3><p class="sl-desc">Sun, surf, spice and Portuguese soul</p></div>
+        <div class="sl-arr">→</div>
+      </div>
+
+      <!-- Kerala Backwaters: images/kerala.jpg -->
+      <div class="sl-card" onclick="location='south.html#kerala'">
+        <img src="images/kerala.jpg" alt="Kerala"/>
+        <div class="sl-ov"><p class="sl-state">Kerala · Nature</p><h3 class="sl-name">Kerala</h3><p class="sl-desc">God's Own Country — backwaters and spices</p></div>
+        <div class="sl-arr">→</div>
+      </div>
+
+      <!-- Varanasi: images/varanasi.jpg -->
+      <div class="sl-card" onclick="location='north.html#varanasi'">
+        <img src="images/varanasi.jpg" alt="Varanasi"/>
+        <div class="sl-ov"><p class="sl-state">Uttar Pradesh · Spiritual</p><h3 class="sl-name">Varanasi</h3><p class="sl-desc">The oldest living city in the world</p></div>
+        <div class="sl-arr">→</div>
+      </div>
+
+      <!-- Rajasthan Amber Fort: images/amber-fort.jpg -->
+      <div class="sl-card" onclick="location='west.html#rajasthan'">
+        <img src="images/amber-fort.jpg" alt="Rajasthan"/>
+        <div class="sl-ov"><p class="sl-state">Rajasthan · Heritage</p><h3 class="sl-name">Rajasthan</h3><p class="sl-desc">Forts, deserts, camel safaris and royalty</p></div>
+        <div class="sl-arr">→</div>
+      </div>
+
+      <!-- Ladakh: images/ladakh.jpg -->
+      <div class="sl-card" onclick="location='north.html#ladakh'">
+        <img src="images/ladakh.jpg" alt="Ladakh"/>
+        <div class="sl-ov"><p class="sl-state">Ladakh · Himalayan</p><h3 class="sl-name">Ladakh</h3><p class="sl-desc">Where the sky meets the earth</p></div>
+        <div class="sl-arr">→</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PHOTO MOSAIC ===================== -->
+<section class="mosaic-section">
+  <div style="text-align:center" class="reveal">
+    <p style="font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:5px;color:var(--gold);text-transform:uppercase;margin-bottom:12px">✦ Colours of India ✦</p>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.8rem);font-weight:300;line-height:1.1">One Country, <em style="color:var(--saffron);font-style:italic">Infinite Faces</em></h2>
+  </div>
+  <!--
+  MOSAIC IMAGES — Download each, save in images/ folder:
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  m1: Taj Mahal — images/taj-1.jpg — images/taj-main.jpg
+  m2: Varanasi Ghat — images/varanasi.jpg — images/varanasi-ghat.jpg
+  m3: Mehrangarh Fort, Jodhpur — images/mehrangarh.jpg — images/jodhpur-fort.jpg
+  m4: Amber Fort Jaipur — images/amber-fort.jpg — images/amber-fort.jpg
+  m5: Dal Lake Kashmir — images/kashmir-dal.jpg — images/dal-lake.jpg
+  m6: Kerala Backwaters — images/kerala.jpg — images/kerala-bw.jpg
+  m7: Goa Beach — images/goa.jpg — images/goa-beach.jpg
+  m8: Hampi ruins — images/hampi.jpg — images/hampi.jpg
+  m9: Ladakh — images/ladakh.jpg — images/ladakh.jpg
+  m10: Saffron — images/saffron.jpg — images/saffron.jpg
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  -->
+  <div class="mosaic-grid">
+    <div class="mo-item m1" data-lbl="Taj Mahal · Agra"><img src="images/taj-1.jpg" alt="Taj Mahal" loading="lazy"/></div>
+    <div class="mo-item m2" data-lbl="Ganga Aarti · Varanasi"><img src="images/varanasi.jpg" alt="Varanasi" loading="lazy"/></div>
+    <div class="mo-item m3" data-lbl="Mehrangarh · Jodhpur"><img src="images/mehrangarh.jpg" alt="Jodhpur" loading="lazy"/></div>
+    <div class="mo-item m4" data-lbl="Amber Fort · Jaipur"><img src="images/amber-fort.jpg" alt="Jaipur" loading="lazy"/></div>
+    <div class="mo-item m5" data-lbl="Dal Lake · Kashmir"><img src="images/kashmir-dal.jpg" alt="Kashmir" loading="lazy"/></div>
+    <div class="mo-item m6" data-lbl="Kerala Backwaters"><img src="images/kerala.jpg" alt="Kerala" loading="lazy"/></div>
+    <div class="mo-item m7" data-lbl="Goa Beach"><img src="images/goa.jpg" alt="Goa" loading="lazy"/></div>
+    <div class="mo-item m8" data-lbl="Hampi · Karnataka"><img src="images/hampi.jpg" alt="Hampi" loading="lazy"/></div>
+    <div class="mo-item m9" data-lbl="Ladakh Himalayas"><img src="images/ladakh.jpg" alt="Ladakh" loading="lazy"/></div>
+    <div class="mo-item m10" data-lbl="Saffron · Kashmir"><img src="images/saffron.jpg" alt="Saffron" loading="lazy"/></div>
+  </div>
+</section>
+
+<!-- ===================== FESTIVALS ===================== -->
+<section class="fest-section">
+  <p style="font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:5px;color:var(--gold);text-transform:uppercase;margin-bottom:12px" class="reveal">✦ Celebrations ✦</p>
+  <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.8rem);font-weight:300;line-height:1.1" class="reveal">India's <em style="color:var(--saffron);font-style:italic">Festivals</em></h2>
+  <p style="font-size:1.08rem;color:var(--muted);margin-top:12px;max-width:520px;line-height:1.8" class="reveal">Every month is a celebration — India lives in colour and joy all year round.</p>
+  <!--
+  FESTIVAL IMAGES — Download each:
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Diwali:      images/diwali.jpg
+  Holi:        images/holi.jpg
+  Durga Puja:  images/durga-puja.jpg
+  Onam:        images/onam.jpg
+  Pushkar:     images/pushkar.jpg
+  Navratri:    images/navratri.jpg
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  -->
+  <div class="fest-scroll">
+    <div class="fest-card"><img src="images/diwali.jpg" alt="Diwali" loading="lazy"/><div class="fest-info"><p class="fest-month">Oct — Nov</p><h3 class="fest-name">Diwali</h3><p class="fest-loc">Festival of Lights · All India</p></div></div>
+    <div class="fest-card"><img src="images/holi.jpg" alt="Holi" loading="lazy"/><div class="fest-info"><p class="fest-month">March</p><h3 class="fest-name">Holi</h3><p class="fest-loc">Festival of Colours · North India</p></div></div>
+    <div class="fest-card"><img src="images/durga-puja-md.jpg" alt="Durga Puja" loading="lazy"/><div class="fest-info"><p class="fest-month">October</p><h3 class="fest-name">Durga Puja</h3><p class="fest-loc">Goddess Festival · Kolkata</p></div></div>
+    <div class="fest-card"><img src="images/onam.jpg" alt="Onam" loading="lazy"/><div class="fest-info"><p class="fest-month">Aug — Sep</p><h3 class="fest-name">Onam</h3><p class="fest-loc">Snake Boat Race · Kerala</p></div></div>
+    <div class="fest-card"><img src="images/pushkar.jpg" alt="Pushkar" loading="lazy"/><div class="fest-info"><p class="fest-month">November</p><h3 class="fest-name">Pushkar Mela</h3><p class="fest-loc">Camel Fair · Rajasthan</p></div></div>
+    <div class="fest-card"><img src="images/navratri.jpg" alt="Navratri" loading="lazy"/><div class="fest-info"><p class="fest-month">October</p><h3 class="fest-name">Navratri</h3><p class="fest-loc">Garba &amp; Dandiya · Gujarat</p></div></div>
+  </div>
+</section>
+
+<!-- ===================== FOOD ===================== -->
+<section class="food-section">
+  <p style="font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:5px;color:var(--gold);text-transform:uppercase;margin-bottom:12px" class="reveal">✦ Taste of India ✦</p>
+  <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.8rem);font-weight:300;line-height:1.1" class="reveal">Food that <em style="color:var(--saffron);font-style:italic">Touches the Soul</em></h2>
+  <!--
+  FOOD IMAGES — Download each:
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Biryani:        images/biryani.jpg
+  Masala Dosa:    images/dosa.jpg
+  Butter Chicken: images/butter-chicken.jpg
+  Pani Puri:      images/pani-puri.jpg
+  Dal Baati:      images/dal-baati.jpg
+  Rosogolla:      images/rosogolla.jpg
+  Kulcha:         images/kulcha.jpg
+  Kerala Fish:    images/kerala-fish-curry.jpg
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  -->
+  <div class="food-grid">
+    <div class="fo-item reveal"><img src="images/biryani.jpg" alt="Biryani" loading="lazy"/><div class="fo-ov"><p class="fo-reg">Hyderabad · South</p><h4 class="fo-name">Biryani</h4></div></div>
+    <div class="fo-item reveal"><img src="images/dosa.jpg" alt="Dosa" loading="lazy"/><div class="fo-ov"><p class="fo-reg">Tamil Nadu · South</p><h4 class="fo-name">Masala Dosa</h4></div></div>
+    <div class="fo-item reveal"><img src="images/butter-chicken.jpg" alt="Butter Chicken" loading="lazy"/><div class="fo-ov"><p class="fo-reg">Punjab · North</p><h4 class="fo-name">Butter Chicken</h4></div></div>
+    <div class="fo-item reveal"><img src="images/pani-puri.jpg" alt="Pani Puri" loading="lazy"/><div class="fo-ov"><p class="fo-reg">Mumbai · West</p><h4 class="fo-name">Pani Puri</h4></div></div>
+    <div class="fo-item reveal"><img src="images/dal-baati.jpg" alt="Dal Baati" loading="lazy"/><div class="fo-ov"><p class="fo-reg">Rajasthan · West</p><h4 class="fo-name">Dal Baati Churma</h4></div></div>
+    <div class="fo-item reveal"><img src="images/rosogolla.jpg" alt="Rosogolla" loading="lazy"/><div class="fo-ov"><p class="fo-reg">West Bengal · East</p><h4 class="fo-name">Rosogolla</h4></div></div>
+    <div class="fo-item reveal"><img src="images/kulcha.jpg" alt="Kulcha" loading="lazy"/><div class="fo-ov"><p class="fo-reg">Amritsar · North</p><h4 class="fo-name">Amritsari Kulcha</h4></div></div>
+    <div class="fo-item reveal"><img src="images/kerala-fish-curry.jpg" alt="Kerala Fish" loading="lazy"/><div class="fo-ov"><p class="fo-reg">Kerala · South</p><h4 class="fo-name">Kerala Fish Curry</h4></div></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat-item reveal"><div class="stat-n">1.4B</div><div class="stat-l">People &amp; Cultures</div></div>
+  <div class="stat-item reveal"><div class="stat-n">40</div><div class="stat-l">UNESCO Heritage Sites</div></div>
+  <div class="stat-item reveal"><div class="stat-n">5000</div><div class="stat-l">Years of Civilisation</div></div>
+  <div class="stat-item reveal"><div class="stat-n">22+</div><div class="stat-l">Official Languages</div></div>
+</div>
+
+<!-- NEWSLETTER -->
+<div class="nl-section">
+  <div>
+    <p style="font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:5px;color:var(--gold);text-transform:uppercase;margin-bottom:12px" class="reveal">✦ Stay Connected ✦</p>
+    <h2 class="nl-title reveal">Plan Your <em>Journey</em></h2>
+    <p class="nl-sub reveal">Receive curated travel guides, hidden gems, festival calendars, and insider tips for your India adventure.</p>
+  </div>
+  <form class="nl-form" onsubmit="handleNL(event)">
+    <input class="nl-in" type="text" placeholder="Your Name" required/>
+    <input class="nl-in" type="email" placeholder="Your Email Address" required/>
+    <button class="nl-btn" type="submit">Subscribe to India Stories</button>
+    <p style="font-size:0.9rem;color:var(--muted)">No spam. Only beautiful India travel stories.</p>
+    <p class="nl-msg" id="nlMsg"></p>
+  </form>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-top">
+    <div class="ft-brand">
+      <h3>🪔 Incredible India</h3>
+      <p>A lovingly crafted student project celebrating the infinite beauty, culture, and soul of Bharat — our India.</p>
+    </div>
+    <div class="ft-col">
+      <h4>Regions</h4>
+      <ul>
+        <li><a href="north.html">North India</a></li>
+        <li><a href="south.html">South India</a></li>
+        <li><a href="east.html">East India</a></li>
+        <li><a href="west.html">West India</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4>Destinations</h4>
+      <ul>
+        <li><a href="north.html#taj">Taj Mahal</a></li>
+        <li><a href="west.html#goa">Goa Beaches</a></li>
+        <li><a href="north.html#kashmir">Kashmir</a></li>
+        <li><a href="south.html#kerala">Kerala</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4>Discover</h4>
+      <ul>
+        <li><a href="contact.html">Plan a Trip</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="north.html#amritsar">Golden Temple</a></li>
+        <li><a href="north.html#ladakh">Ladakh</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <p>© 2024 Incredible India · Made with ❤️ by a student 🇮🇳</p>
+    <p style="font-family:'Tiro Devanagari Sanskrit',serif;font-size:1.1rem;color:var(--gold)">जय हिन्द</p>
+    <p>Jai Hind ✦ Jay Bharat</p>
+  </div>
+</footer>
+
+<script>
+/* ===== LOADER ===== */
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('loader').classList.add('gone'), 2200);
+});
+
+/* ===== NAVBAR SCROLL ===== */
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+/* ===== HERO SLIDER ===== */
+let cur = 0;
+const slides = document.querySelectorAll('.h-slide');
+const dots = document.querySelectorAll('.h-dot');
+const numEl = document.getElementById('hNum');
+
+function goSlide(n) {
+  slides[cur].classList.remove('on');
+  dots[cur].classList.remove('on');
+  cur = n;
+  slides[cur].classList.add('on');
+  dots[cur].classList.add('on');
+  numEl.textContent = String(cur + 1).padStart(2, '0');
+}
+setInterval(() => goSlide((cur + 1) % slides.length), 5000);
+
+/* ===== PLACES SLIDER ===== */
+let slPos = 0;
+const track = document.getElementById('slTrack');
+const cardW = 338;
+function slideR() {
+  slPos = Math.min(slPos + cardW, (track.children.length - 3) * cardW);
+  track.style.transform = `translateX(-${slPos}px)`;
+}
+function slideL() {
+  slPos = Math.max(0, slPos - cardW);
+  track.style.transform = `translateX(-${slPos}px)`;
+}
+
+/* ===== NEWSLETTER ===== */
+function handleNL(e) {
+  e.preventDefault();
+  const m = document.getElementById('nlMsg');
+  m.textContent = '✦ Wonderful! Your first India story is on its way.';
+  e.target.reset();
+  setTimeout(() => m.textContent = '', 5000);
+}
+
+/* ===== SCROLL REVEAL ===== */
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal, .reveal-l, .reveal-r')
+  .forEach(el => obs.observe(el));
+
+/* ===== IMAGE FALLBACK: if local images/ missing, load from Wikimedia ===== */
+document.querySelectorAll('img[data-wiki]').forEach(function(img){
+  img.addEventListener('error', function(){
+    var wiki = this.getAttribute('data-wiki');
+    if(wiki && this.src !== wiki){ this.src = wiki; this.removeAttribute('data-wiki'); }
+  }, {once:true});
+});
+
+/* ===== BG IMAGE FALLBACK ===== */
+var bgFallbacks = {
+  "images/north-hero.jpg": "images/taj-hero.jpg",
+  "images/kashmir-dal-hero.jpg": "images/kashmir-hero.jpg",
+  "images/west-hero.jpg": "images/west-hero.jpg",
+  "images/goa-hero.jpg": "images/goa-hero.jpg",
+  "images/kerala-hero.jpg": "images/kerala-hero.jpg",
+  "images/south-hero.jpg": "images/kerala-hero.jpg",
+  "images/darjeeling-hero.jpg": "images/darjeeling-md.jpg"
+};
+document.querySelectorAll('[style*="background-image"]').forEach(function(el){
+  var style = el.getAttribute('style') || '';
+  var match = style.match(/url\(['"]?([^'"\)]+)['"]?\)/);
+  if(!match) return;
+  var localSrc = match[1];
+  var wikiSrc = bgFallbacks[localSrc];
+  if(!wikiSrc) return;
+  var tImg = new Image();
+  tImg.onerror = function(){ el.style.backgroundImage = "url('" + wikiSrc + "')"; };
+  tImg.src = localSrc;
+});
+function toggleMenu(){
+  var d=document.getElementById('drawer');
+  d.classList.toggle('open');
+  document.getElementById('hbtn').textContent=d.classList.contains('open')?'✕':'☰';
+}
+</script>
+</body>
+</html>
